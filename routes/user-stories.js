@@ -18,4 +18,10 @@ router.get('/:id', function (request, response, next) {
     }));
 });
 
+router.post('/', function (request, response, next) {
+    if (request.body) {
+        userStories.add(request.body);
+    }
+});
+
 module.exports = router;
