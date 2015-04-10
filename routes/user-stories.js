@@ -10,14 +10,16 @@ router.get('/', function (request, response, next) {
 
 router.get('/:id', function (request, response, next) {
     response.send(_.find(userStories, function (userStory) {
-        return userStory.id === request.params.id;
+        var id = parseInt(request.params.id);
+        return userStory.id === id;
     }));
 });
 
 router.post('/', function (request, response, next) {
-    console.log('creating new user story');
     if (request.body) {
-        userStories.push(request.body);
+        var userStory = request.body;
+        userStory.id = userStories.length;
+        userStories.push(userStory);
         response.send(200);
     }
 });
